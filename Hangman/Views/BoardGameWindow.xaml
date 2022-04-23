@@ -1,0 +1,142 @@
+﻿<Window x:Class="Hangman.Views.BoardGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Hangman.Views"
+        xmlns:viewmodels="clr-namespace:Hangman.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:GameVM}"
+        mc:Ignorable="d"
+        Title="Hangman Game" WindowStyle="None" WindowState ="Maximized">
+    <Grid>
+        <Menu Width="1700" Height="35" HorizontalAlignment="Left" VerticalAlignment="Top"  FontSize="18">
+
+            <MenuItem Header="File">
+                <MenuItem Header ="New Game" Command="{Binding newGame}"/>
+                <MenuItem Header ="Open Game"/>
+                <MenuItem Header ="Save Game"/>
+                <MenuItem Header ="Statistics"/>
+                <MenuItem Header ="Exit" Click="btnExit" />
+
+            </MenuItem>
+
+            <MenuItem Header="Categories">
+                <MenuItem Header="All Categories" Command="{Binding allCategories}"/>
+                <MenuItem Header="Cars" Command="{Binding cars}"/>
+                <MenuItem Header="Movies" Command="{Binding movies}"/>
+                <MenuItem Header="Singers" Command="{Binding singers}"/>
+                <MenuItem Header="Capitals" Command="{Binding capitals}"/>
+            </MenuItem>
+
+            <MenuItem Header="Help">
+                <MenuItem Header="About"/>
+            </MenuItem>
+
+        </Menu>
+
+        <WrapPanel Margin="0,35,0,0">
+            <WrapPanel.Background>
+                <ImageBrush ImageSource="D:\Facultate\Anul2\Semestrul2\MVP\Tema2\Hangman\Hangman\Images\Backround2.jpg"/>
+            </WrapPanel.Background>
+
+            <StackPanel>
+                <WrapPanel>
+                    <Label Name ="imageLabel" Width="131" Height="89" Margin="40,20,0,0">
+                        <Image Source="{Binding userVM.Image}"/>
+                    </Label>
+
+                    <Label Content="{Binding userVM.UserName}" FontSize="25" Margin="10,40,10,0" Width="120" Height="60"/>
+                </WrapPanel>
+
+
+                <WrapPanel>
+
+                    <Label FontSize="30" Margin="30,0,16,0">
+                        <Bold>
+                            Level:
+                        </Bold>
+                    </Label>
+                    <Label Content="{Binding level}" FontSize="25" FontWeight="Bold" Margin="0,5,0,0"/>
+
+                </WrapPanel>
+
+
+
+                <Label >
+                    <Image Source="{Binding imageSource}" Stretch="UniformToFill" Height="481" Width="470" Margin="0,30,0,0"/>
+
+                </Label>
+                <WrapPanel Margin="0, 20, 0, 0">
+                    <TextBlock  FontSize="30" Width="88" Margin="30,0,0,0">
+                        <Bold>
+                            Word:    
+                        </Bold>
+                    </TextBlock>
+
+                    <Label Name ="lbName" Content="{Binding words.ShownedWord}" FontSize="30" Width="400" Margin="10,5,0,0"/>
+
+                </WrapPanel>
+
+            </StackPanel>
+
+
+            <StackPanel Margin="0,0,0,0">
+                <Label Content="{Binding timeLeft}" FontSize="20" HorizontalContentAlignment="Center" Background="Black" Height="41" Width="77" Foreground="White" VerticalContentAlignment="Center" Margin="0,0,400,0" BorderBrush="White" BorderThickness="2,2,2,2" HorizontalAlignment="Center" />
+                <WrapPanel Margin="165, 150, 0, 0">
+                    <TextBlock Text="{Binding mistakes[0]}" FontSize="60" Width="85" TextAlignment="Center" Margin="10,0,10,0" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                    <TextBlock Text="{Binding mistakes[1]}" FontSize="60" Width="85" TextAlignment="Center" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Margin="10,0,10,0"/>
+                    <TextBlock Text="{Binding mistakes[2]}" FontSize="60" Width="85" TextAlignment="Center" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Margin="10,0,10,0"/>
+                    <TextBlock Text="{Binding mistakes[3]}" FontSize="60" Width="85" TextAlignment="Center" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Margin="10,0,10,0"/>
+                    <TextBlock Text="{Binding mistakes[4]}" FontSize="60" Width="85" TextAlignment="Center" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Margin="10,0,10,0"/>
+                    <TextBlock Text="{Binding mistakes[5]}" FontSize="60" Width="85" TextAlignment="Center" Background="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Margin="10,0,10,0"/>
+                </WrapPanel>
+
+                <WrapPanel Margin="180, 180, 100, 40">
+
+                    <Button Content="A" Command="{Binding a}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseA}"/>
+                    <Button Content="B" Command="{Binding b}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseB}"/>
+                    <Button Content="C" Command="{Binding c}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseC}"/>
+                    <Button Content="D" Command="{Binding d}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseD}"/>
+                    <Button Content="E" Command="{Binding e}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseE}"/>
+                    <Button Content="F" Command="{Binding f}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseF}"/>
+                    <Button Content="G" Command="{Binding g}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseG}"/>
+                    <Button Content="H" Command="{Binding h}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseH}"/>
+                    <Button Content="I" Command="{Binding i}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseI}"/>
+
+                </WrapPanel>
+
+                <WrapPanel Margin="115, 0, 0, 0">
+
+                    <Button Content="J" Command="{Binding j}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseJ}"/>
+                    <Button Content="K" Command="{Binding k}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseK}"/>
+                    <Button Content="L" Command="{Binding l}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseL}"/>
+                    <Button Content="M" Command="{Binding m}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseM}"/>
+                    <Button Content="N" Command="{Binding n}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseN}"/>
+                    <Button Content="O" Command="{Binding o}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseO}"/>
+                    <Button Content="P" Command="{Binding p}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseP}"/>
+                    <Button Content="Q" Command="{Binding q}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseQ}"/>
+                    <Button Content="R" Command="{Binding r}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseR}"/>
+                    <Button Content="S" Command="{Binding s}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseS}"/>
+                    <Button Content="T" Command="{Binding t}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseT}"/>
+
+                </WrapPanel>
+
+                <WrapPanel Margin="275, 40, 0, 0">
+
+                    <Button Content="U" Command="{Binding u}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseU}"/>
+                    <Button Content="V" Command="{Binding v}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseV}"/>
+                    <Button Content="W" Command="{Binding w}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseW}"/>
+                    <Button Content="X" Command="{Binding x}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseX}"/>
+                    <Button Content="Y" Command="{Binding y}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseY}"/>
+                    <Button Content="Z" Command="{Binding z}" Width="67" Height="60" Background="Black" Foreground="White" FontSize="40" IsEnabled="{Binding CanCloseZ}"/>
+
+                </WrapPanel>
+
+            </StackPanel>
+
+
+
+        </WrapPanel>
+
+
+    </Grid>
+</Window>
